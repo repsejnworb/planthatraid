@@ -4,11 +4,42 @@ body {
     font-size: small;
 }
 
-ul, li {
+ul {
     list-style-type: none;
-    margin: 1;
-    padding: 1;
+    margin: 0;
+    padding: 0;
 }
+
+h1 {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 10px;
+    color: #ffffff;
+}
+
+/* DEBUG CODE */
+#container {
+    background-color: #c0c0c0;
+    width: 600px;
+    height: 600px;
+    vertical-align: center;
+    margin: 0 auto;
+}
+
+#classes {
+    background-color: #000000;
+    margin: 0 auto;
+    float: left;
+    padding: 10px;
+}
+
+#planner {
+    width: 251px;
+    height: 580px;
+    background-color: #000000;
+    margin: 0 auto;
+}
+
+/* DEBUG END */
 
 .block {
     width: 120px;
@@ -29,6 +60,9 @@ ul, li {
 
 	/* Disable I-bar */
 	cursor:default;
+
+    /* Center align blocks in any div they are present in */
+    margin: 0 auto;
 }
 
 .block.warrior {
@@ -59,7 +93,11 @@ ul, li {
     width: 120px;
     height: 20px;
     background-color: #a0a0a0;
+    list-style-type: none;
+    margin: 3;
 }
+
+
 
 .slot-highlight {
 	background-color: #808080;
@@ -67,4 +105,13 @@ ul, li {
 
 .group {
 	float: left;
+    text-align: center;
+    width: 125px;
+}
+
+.las-button {
+    width: 10px;
+    height: 10px;
+    background-color: #00FF00;
+    float: left;
 }
