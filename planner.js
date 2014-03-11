@@ -25,6 +25,14 @@ $(document).ready(function(){
     };
 
     console.log(Base62.encode(13455));
+    //var string = '4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG'
+    var string = '4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK'
+    var compressed = LZString.compressToBase64(string);
+    console.log(compressed);
+    console.log(compressed.length);
+    var decompressed = LZString.decompressFromBase64(compressed);
+    console.log(decompressed);
+    console.log(decompressed.length);
 
     function serializeGroups() {
         var result = '';
@@ -41,6 +49,8 @@ $(document).ready(function(){
                 result = result + classes[className].toString();  
             }
         });
+        console.log("result: " + result);
+        console.log("result: " + Base62.encode(result));
         return Base62.encode(result);
     };
 
@@ -67,6 +77,7 @@ $(document).ready(function(){
                     if(!valid) {
                         //Dropped outside of valid droppable
                         $(this).remove();
+                        serializeGroups();
                     }
                 }
             });
