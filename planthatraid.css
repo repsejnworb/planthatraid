@@ -1,7 +1,18 @@
+html{
+	font-family:"Trebuchet MS";
+	color: #e8e5e5;	
+    font-size: medium;
+    background-color:
+	margin: 0;
+	background: url("http://immortalis-noctis.co.uk/inblackops/images/bg2.jpg") no-repeat center center fixed;
+	background-color: #000;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	}
 body {
 	padding-top: 50px;
-    font-family: Verdana, Geneva, sans-serif;
-    font-size: small;
 }
 
 ul {
@@ -10,32 +21,50 @@ ul {
     padding: 0;
 }
 
-h1 {
+h1{
     font-family: Verdana, Geneva, sans-serif;
     font-size: 10px;
     color: #ffffff;
+}
+
+.div_groups h1 {
+	height:20px;
+	margin:0px;
+	width: 120px;
+	text-align:center;
+	border: 1px solid transparent;
+	margin:2px;
+	line-height:17px;
+	color: #FF9900;
 }
 
 /* DEBUG CODE */
 #container {
     background-color: #c0c0c0;
     width: 600px;
-    height: 600px;
+    height: 650px;
     vertical-align: center;
     margin: 0 auto;
+    background-color: #454f55;
+  	border-radius: 5px; 
+  	border: 1px solid black;
 }
 
 #classes {
-    background-color: #000000;
     margin: 0 auto;
     float: left;
-    padding: 10px;
+    margin: 10px;
+    margin-top:25px;
+    margin-left:15px;
+    -webkit-box-shadow: 0 4px 4px -2px #000000;
+   -moz-box-shadow: 0 4px 4px -2px #000000;
+    box-shadow: 0 4px 4px -2px #000000;
+    border-top: 1px solid #cc420c;
 }
 
 #planner {
-    width: 251px;
-    height: 580px;
-    background-color: #000000;
+    width: 304px;
+    min-height: 600px;
     margin: 0 auto;
 }
 
@@ -51,67 +80,130 @@ h1 {
     font-size: small;
 
     /* Disable Text Selection */
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 
-	/* Disable I-bar */
-	cursor:default;
+    /* Disable I-bar */
+    cursor:default;
 
     /* Center align blocks in any div they are present in */
     margin: 0 auto;
 }
 
 .block.warrior {
-	background-color: #b42b25;
+	background-color: #B00000;
+	cursor:pointer;
 }
 
 .block.stalker {
 	background-color: #902e85;
+	cursor:pointer;
 }
 
 .block.medic {
 	background-color: #c0c126;
+	cursor:pointer;
 }
 
 .block.engineer {
 	background-color: #26c14b;
+	cursor:pointer;
 }
 
 .block.spellslinger {
 	background-color: #2692c0;
+	cursor:pointer;
 }
 
 .block.esper {
 	background-color: #37827d;
+	cursor:pointer;
 }
 
-.slot {
+.slot li {
     width: 120px;
     height: 20px;
     background-color: #a0a0a0;
-    list-style-type: none;
-    margin: 3;
+    border:1px solid black;
+    margin:2px;
 }
 
-
-
-.slot-highlight {
+.slot-highlight{
 	background-color: #808080;
 }
 
-.group {
-	float: left;
-    text-align: center;
-    width: 125px;
-}
+.div_add, .div_groups{
+	float:left;
+	
+	}
+	
+.div_add li{
+    /* Disable Text Selection */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    /* Disable I-bar */
+    cursor:default;
+
+	height:20px;
+	width:20px;
+	border:1px solid black;
+	text-align:center;
+	vertical-align:middle;
+	margin:2px;
+	cursor:pointer;
+	line-height:18px;
+	background-color: #6F0A0A;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#B01010), to(#6F0A0A), color-stop(.5,#950C0C));
+	background: -moz-linear-gradient(top, #B01010 0%, #950C0C 50%, #6F0A0A 100%);
+	}
 
 .las-button {
     width: 10px;
     height: 10px;
     background-color: #00FF00;
     float: left;
+}
+
+.right_content{
+	width:138px; 
+	height:250px; 
+	float:right;
+}
+
+.right_content p{
+	font-size: small;
+	width: 100px;
+	margin-top:26px;
+	margin-left:5px;
+	padding:10px;
+	margin-right: 20px;
+	border-top: 1px solid #cc420c;
+	border-radius:5px;
+	background-color: #950d0d;
+	-webkit-box-shadow: 0 4px 4px -2px #000000;
+   -moz-box-shadow: 0 4px 4px -2px #000000;
+        box-shadow: 0 4px 4px -2px #000000;
+
+	}
+	
+.content_header{
+	border-bottom:1px solid #622525; 
+	border-radius: 5px 5px 0 0; 
+	min-height: 20px; 
+	padding: 10px; 
+	padding-left:15px;
+	/*background-color: #2e3539;*/
+	background-color: #212121;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#343434), to(#212121), color-stop(.5,#282828));
+	background: -moz-linear-gradient(top, #343434 0%, #282828 50%, #212121 100%);
+	box-shadow:inset 0px 1px #474e52;
 }

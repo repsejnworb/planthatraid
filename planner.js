@@ -3,20 +3,34 @@ $(document).ready(function(){
 
     var classes = {
         'undefined': 0,
-        'warrior': 1,
-        'stalker': 2,
-        'medic': 3,
-        'engineer': 4,
-        'spellslinger': 5,
-        'esper': 6,
+        'warrior-assault': 1,
+        'stalker-assault': 2,
+        'medic-assault': 3,
+        'engineer-assault': 4,
+        'spellslinger-assault': 5,
+        'esper-assault': 6,
+        'warrior-support': 7,
+        'stalker-support': 8,
+        'medic-support': 9,
+        'engineer-support': "a",
+        'spellslinger-support': "b",
+        'esper-support': "c",
     }
 
+    generateURL()
+    var param = location.href.substr(location.href.indexOf('#')+1);
+    var hash = $(location).attr('hash');
+    console.log("full url: " + document.URL);
+    console.log("param: " + param);
+    console.log("hash: " + hash);
 
     function getClass(obj) {
         var className;
         // Note, an object with multiple classes will not work well (:
         $.each(classes, function(index) {
-            if (obj.hasClass(index)) {
+            var clsname = index.split('-')[0];
+            var role = index.split('-')[1];
+            if (obj.hasClass(clsname) && obj.hasClass(role)) {
                 className = index;
                 return false;
             };
@@ -29,14 +43,17 @@ $(document).ready(function(){
     var string = '4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK'
     var compressed = LZString.compressToBase64(string);
     console.log(compressed);
+    console.log(string.length);
     console.log(compressed.length);
+    var korv = Base62.encode(string);
+    console.log("B62: " + korv.length);
     var decompressed = LZString.decompressFromBase64(compressed);
     console.log(decompressed);
     console.log(decompressed.length);
 
     function serializeGroups() {
         var result = '';
-        $( ".group li" ).each(function( index ) {
+        $( ".div_groups li" ).each(function( index ) {
             var block = $( this ).children(".block");
             if (typeof(block) === 'undefined') {
                 result = result + '0';
@@ -54,6 +71,14 @@ $(document).ready(function(){
         return Base62.encode(result);
     };
 
+    function generateURL() {
+        var URL = $(location).attr('href');
+        var seri = serializeGroups();
+        URL += "#" + seri;
+        $( ".linkfield" ).val(URL);
+        return seri;
+    };
+
 
     draggableOpacity = 0.6;
 
@@ -66,8 +91,8 @@ $(document).ready(function(){
     });
 
     // Slots in which we can place our blocks
-    $('.slot').droppable({
-        hoverClass: 'slot-highlight',
+    $('.slot li').droppable({
+        hoverClass: '.slot-highlight',
         accept: '.block',
         drop: function(event, ui){
             clone = ui.draggable.clone();
@@ -77,7 +102,7 @@ $(document).ready(function(){
                     if(!valid) {
                         //Dropped outside of valid droppable
                         $(this).remove();
-                        serializeGroups();
+                        generateURL();
                     }
                 }
             });
@@ -89,13 +114,13 @@ $(document).ready(function(){
             $(this).append(clone);
             var cla = getClass(clone);
             console.log("got class: " + cla);
-            var seri = serializeGroups();
-            console.log("got seri: " + seri);
 
             // When moving blocks in groups we want to clean up after us.
             if(!$(ui.draggable).parent().is('#classes')) {
                 $(ui.draggable).remove();
             }
+            var seri = generateURL();
+            console.log("got seri: " + seri);
         },
     });
 });
