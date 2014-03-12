@@ -25,7 +25,7 @@ $(document).ready(function(){
     console.log("hash: " + hash);
 
     function getClass(obj) {
-        var className;
+        var className = 'undefined';
         // Note, an object with multiple classes will not work well (:
         $.each(classes, function(index) {
             var clsname = index.split('-')[0];
@@ -55,20 +55,16 @@ $(document).ready(function(){
         var result = '';
         $( ".div_groups li" ).each(function( index ) {
             var block = $( this ).children(".block");
-            if (typeof(block) === 'undefined') {
-                result = result + '0';
-                console.log("UNDEFFED");
-            }
-            else {
-                var className = getClass(block);
-                console.log(index + ": " + className);
-                console.log("fisk " + classes[className]);
-                result = result + classes[className].toString();  
-            }
+            var className = getClass(block);
+            //console.log(index + ": " + className);
+            //console.log("fisk " + classes[className]);
+            result = result + classes[className].toString();  
         });
         console.log("result: " + result);
-        console.log("result: " + Base62.encode(result));
-        return Base62.encode(result);
+        //console.log("result62: " + Base62.encode(result));
+        //console.log("result62decoded: " + Base62.decode(Base62.encode(result)));
+        //return Base62.encode(result);
+        return result
     };
 
     function generateURL() {
@@ -78,6 +74,23 @@ $(document).ready(function(){
         $( ".linkfield" ).val(URL);
         return seri;
     };
+
+    function swapRole(block) {
+        if (block.hasClass('assault')) {
+            block.removeClass('assault');
+            block.addClass('support');
+            var text = block.text().replace("assault", "support");
+            block.text(text);
+        }
+        else if (block.hasClass('support')) {
+            block.removeClass('support');
+            block.addClass('assault');
+            var text = block.text().replace("support", "assault");
+            block.text(text);
+        }
+
+
+    }
 
 
     draggableOpacity = 0.6;
@@ -123,6 +136,39 @@ $(document).ready(function(){
             console.log("got seri: " + seri);
         },
     });
+
+    $('.div_add li').click(function() {
+        var group = $(this).closest('.group');
+        // Minus 1 because we have 6 elements in the div_add
+        var index = $(this).index() - 1;
+        var slot = group.find('.slot li').eq(index);
+        console.log("number of children: " + slot.children().length)
+        var block = slot.children();
+        console.log("Slot: " + slot.attr('id'));
+        console.log(block.length);
+        if (block.length == 0) {
+            console.log("Tried to switch role for empty slot");
+        }
+        else if (block.length == 1) {
+            // var className = getClass(block); 
+            console.log("Swapping role");
+            swapRole(block);
+        }
+        else {
+            console.log("Unknown error. Length was " + block.length);
+        }
+        var seri = generateURL();
+        console.log("got new seri: " + seri);
+
+        /*
+        console.log("Me: " + $(this).attr('id'));
+        console.log("Index: " + index);
+        console.log("Parent: " + $(this).parent().attr('id'));
+        console.log("In group: " + group.attr('id'));
+        console.log("Slot: " + slot.attr('id'));
+        */
+    });
+
 });
 
 
