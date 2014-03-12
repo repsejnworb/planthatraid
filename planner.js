@@ -17,81 +17,21 @@ $(document).ready(function(){
         'esper-support': "c",
     }
 
-    generateURL()
-    var param = location.href.substr(location.href.indexOf('#')+1);
-    var hash = $(location).attr('hash');
-    console.log("full url: " + document.URL);
-    console.log("param: " + param);
-    console.log("hash: " + hash);
-
-    function getClass(obj) {
-        var className = 'undefined';
-        // Note, an object with multiple classes will not work well (:
-        $.each(classes, function(index) {
-            var clsname = index.split('-')[0];
-            var role = index.split('-')[1];
-            if (obj.hasClass(clsname) && obj.hasClass(role)) {
-                className = index;
-                return false;
-            };
-        }); 
-        return className;
-    };
-
-    console.log(Base62.encode(13455));
-    //var string = '4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG'
-    var string = '4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK'
-    var compressed = LZString.compressToBase64(string);
-    console.log(compressed);
-    console.log(string.length);
-    console.log(compressed.length);
-    var korv = Base62.encode(string);
-    console.log("B62: " + korv.length);
-    var decompressed = LZString.decompressFromBase64(compressed);
-    console.log(decompressed);
-    console.log(decompressed.length);
-
-    function serializeGroups() {
-        var result = '';
-        $( ".div_groups li" ).each(function( index ) {
-            var block = $( this ).children(".block");
-            var className = getClass(block);
-            //console.log(index + ": " + className);
-            //console.log("fisk " + classes[className]);
-            result = result + classes[className].toString();  
-        });
-        console.log("result: " + result);
-        //console.log("result62: " + Base62.encode(result));
-        //console.log("result62decoded: " + Base62.decode(Base62.encode(result)));
-        //return Base62.encode(result);
-        return result
-    };
-
-    function generateURL() {
-        var URL = $(location).attr('href');
-        var seri = serializeGroups();
-        URL += "#" + seri;
-        $( ".linkfield" ).val(URL);
-        return seri;
-    };
-
-    function swapRole(block) {
-        if (block.hasClass('assault')) {
-            block.removeClass('assault');
-            block.addClass('support');
-            var text = block.text().replace("assault", "support");
-            block.text(text);
-        }
-        else if (block.hasClass('support')) {
-            block.removeClass('support');
-            block.addClass('assault');
-            var text = block.text().replace("support", "assault");
-            block.text(text);
-        }
-
-
+    var classes_reversed = {
+        '0': 'undefined',
+        '1': 'warrior-assault',
+        '2': 'stalker-assault',
+        '3': 'medic-assault',
+        '4': 'engineer-assault',
+        '5': 'spellslinger-assault',
+        '6': 'esper-assault',
+        '7': 'warrior-support',
+        '8': 'stalker-support',
+        '9': 'medic-support',
+        'a': 'engineer-support',
+        'b': 'spellslinger-support',
+        'c': 'esper-support',
     }
-
 
     draggableOpacity = 0.6;
 
@@ -168,6 +108,143 @@ $(document).ready(function(){
         console.log("Slot: " + slot.attr('id'));
         */
     });
+
+    parseURL()
+    generateURL()
+
+    function getClass(obj) {
+        var className = 'undefined';
+        // Note, an object with multiple classes will not work well (:
+        $.each(classes, function(index) {
+            var clsname = index.split('-')[0];
+            var role = index.split('-')[1];
+            if (obj.hasClass(clsname) && obj.hasClass(role)) {
+                className = index;
+                return false;
+            };
+        }); 
+        return className;
+    };
+
+    /*
+    console.log(Base62.encode(13455));
+    //var string = '4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG'
+    var string = '4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK'
+    var compressed = LZString.compressToBase64(string);
+    console.log(compressed);
+    console.log(string.length);
+    console.log(compressed.length);
+    var korv = Base62.encode(string);
+    console.log("B62: " + korv.length);
+    var decompressed = LZString.decompressFromBase64(compressed);
+    console.log(decompressed);
+    console.log(decompressed.length);
+    */
+
+    function serializeGroups() {
+        var result = '';
+        $( ".div_groups li" ).each(function( index ) {
+            var block = $( this ).children(".block");
+            var className = getClass(block);
+            //console.log(index + ": " + className);
+            //console.log("fisk " + classes[className]);
+            result = result + classes[className].toString();  
+        });
+        console.log("result: " + result);
+        //console.log("result62: " + Base62.encode(result));
+        //console.log("result62decoded: " + Base62.decode(Base62.encode(result)));
+        //return Base62.encode(result);
+        return result
+    };
+
+    function generateURL() {
+        var URL = $(location).attr('href').split('#')[0];
+        var seri = serializeGroups();
+        URL += "#" + seri;
+        $( ".linkfield" ).val(URL);
+        return seri;
+    };
+
+    function parseURL() {
+        var param = location.href.substr(location.href.indexOf('#')+1);
+        var hash = $(location).attr('hash');
+        if (hash.length > 0) {
+            hash = hash.replace('#','').split('');
+            console.log("full url: " + document.URL);
+            console.log("param: " + param);
+            console.log("hash: " + hash);
+            console.log("indexing hash: " + hash[39]);
+            restoreFromHash(hash);         
+        }
+    }
+
+    function restoreFromHash(hash) {
+        $('.slot li').each(function(index) {
+            var classChar = hash[index];
+            var classAndRole = classes_reversed[classChar];
+            var clsname = classAndRole.split('-')[0];
+            var role = classAndRole.split('-')[1];
+            if (clsname != 'undefined') {
+                var clone;
+
+                $('#classes .block').each(function(index) {
+                    if ($(this).hasClass(clsname)) {
+                        clone = $(this).clone();
+                        return false;
+                    }
+                });
+
+                //clone.draggable({ disabled: true });
+                //clone.draggable('enable');
+                clone.draggable({
+                    cursor: 'pointer',
+                    revert: function(valid) {
+                        if(!valid) {
+                            //Dropped outside of valid droppable
+                            $(this).remove();
+                            generateURL();
+                        }
+                    }
+                });
+                clone.css({
+                    top: 0,
+                    left: 0,
+                    zIndex: 75
+                });
+
+                console.log(clone.attr("class")); 
+                // ensure we restore the correct role, as the templates start off as assault
+                if (!clone.hasClass(role)) {
+                    swapRole(clone);
+                }
+
+                $(this).append(clone);
+                console.log(clone.attr("class"));           
+            }
+
+        });
+
+    }
+
+    function swapRole(block) {
+        if (block.hasClass('assault')) {
+            block.removeClass('assault');
+            block.addClass('support');
+            var text = block.text().replace("assault", "support");
+            block.text(text);
+        }
+        else if (block.hasClass('support')) {
+            block.removeClass('support');
+            block.addClass('assault');
+            var text = block.text().replace("support", "assault");
+            block.text(text);
+        }
+
+
+    }
+
+
+
 
 });
 
