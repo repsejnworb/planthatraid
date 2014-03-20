@@ -33,13 +33,62 @@ $(document).ready(function(){
         'c': 'esper-support',
     }
 
+    var counters = {
+        "tanks": {
+            "anyOf": [
+                "warrior-support",
+                "stalker-support",
+                "engineer-support",
+            ],
+            "total": 0,
+        },
+        "healers": {
+            "anyOf": [
+                "spellslinger-support",
+                "esper-support",
+                "medic-support",
+            ],
+            "total": 0,
+        },
+        "dps": {
+            "anyOf": [
+                "warrior-assault",
+                "stalker-assault",
+                "esper-assault",
+                "medic-assault",
+                "spellslinger-assault",
+                "engineer-assault",
+            ],
+            "total": 0,
+        },
+
+        "interrupts": {
+            "anyOf": [
+                "warrior-assault",
+                "stalker-assault",
+                "esper-assault",
+                "medic-assault",
+                "spellslinger-assault",
+                "engineer-assault",
+                "warrior-support",
+                "stalker-support",
+                "engineer-support",
+                "spellslinger-support",
+                "esper-support",
+                "medic-support",
+            ],
+            "total": 0,
+        },
+    }
+
+    createCounters();
+
     draggableOpacity = 0.6;
 
     // Draggable blocks either from roster or class table
     $('.block').draggable({
         helper: 'clone',
         revert: 'invalid',
-        cursor: 'pointer',
         opacity: draggableOpacity,
     });
 
@@ -50,7 +99,6 @@ $(document).ready(function(){
         drop: function(event, ui){
             clone = ui.draggable.clone();
             clone.draggable({
-                cursor: 'pointer',
                 revert: function(valid) {
                     if(!valid) {
                         //Dropped outside of valid droppable
@@ -141,12 +189,46 @@ $(document).ready(function(){
     console.log(decompressed.length);
     */
 
+    function createCounters() {
+        var counterHtml = '';
+        for(var counter in counters) {
+            counterHtml += '<span id="' + counter + '">' + counter + ': <span class="counter"></span><br></span>\n'  
+        }
+        $('.counters').html(counterHtml);
+    }
+
+    function writeCounters() {
+        for(var counter in counters) {
+            console.log(counter);
+            console.log(counters[counter]['total']);
+            $('.counters #' + counter + ' .counter').text(counters[counter]['total']);
+        }
+    }
+
+    function updateCountersFor(className) {
+        for(var counter in counters) {
+            if (counters[counter]['anyOf'].indexOf(className) !== -1) {
+                counters[counter]['total'] += 1;
+            }
+        }
+    }
+
+    function resetCounters() {
+        for(var counter in counters) {
+            counters[counter]['total'] = 0;
+        }
+    }
+
     function serializeGroups() {
+        resetCounters();
         var result = '';
         $( ".div_groups li" ).each(function( index ) {
             var block = $( this ).children(".block");
             var className = getClass(block);
             //console.log(index + ": " + className);
+            if ( className !== "undefined") {
+                updateCountersFor(className);
+            }
             //console.log("fisk " + classes[className]);
             result = result + classes[className].toString();  
         });
@@ -162,6 +244,7 @@ $(document).ready(function(){
         var seri = serializeGroups();
         URL += "#" + seri;
         $( ".linkfield" ).val(URL);
+        writeCounters();
         return seri;
     };
 
@@ -197,7 +280,6 @@ $(document).ready(function(){
                 //clone.draggable({ disabled: true });
                 //clone.draggable('enable');
                 clone.draggable({
-                    cursor: 'pointer',
                     revert: function(valid) {
                         if(!valid) {
                             //Dropped outside of valid droppable

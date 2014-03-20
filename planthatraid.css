@@ -181,6 +181,7 @@ h1{
 
 .right_content p{
 	font-size: small;
+	text-transform:capitalize;
 	width: 100px;
 	margin-top:26px;
 	margin-left:5px;
