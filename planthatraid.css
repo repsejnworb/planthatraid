@@ -210,25 +210,26 @@ h1{
 }
 
 .role_icon{
+	float: left;
 	display: block;
-	width: 32px;
-	height: 32px;
-	background-image: url(assets/img/icon-main-64.png);
+	width: 26px;
+	height: 22px;
+	background-image: url(assets/img/icon-main-32.png);
 	background-repeat: no-repeat;
 }
 
 .tank_icon{
-	background-position: -512px 0px;
+	background-position: -259px -5px;
 }
 
 .melee_icon{
-	background-position: -576px 0px;
+	background-position: -291px -5px;
 }
 
 .healer_icon{
-	background-position: -640px 0px;
+	background-position: -323px -5px;
 }
 
 .ranged_icon{
-	background-position: -704px 0px;
+	background-position: -355px -5px;
 }
