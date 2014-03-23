@@ -96,32 +96,26 @@ h1{
 
 .block.warrior {
 	background-color: #B00000;
-	cursor:pointer;
 }
 
 .block.stalker {
 	background-color: #902e85;
-	cursor:pointer;
 }
 
 .block.medic {
 	background-color: #c0c126;
-	cursor:pointer;
 }
 
 .block.engineer {
 	background-color: #26c14b;
-	cursor:pointer;
 }
 
 .block.spellslinger {
 	background-color: #2692c0;
-	cursor:pointer;
 }
 
 .block.esper {
 	background-color: #37827d;
-	cursor:pointer;
 }
 
 .slot li {
@@ -210,26 +204,26 @@ h1{
 }
 
 .role_icon{
-	float: left;
+	float: right;
 	display: block;
-	width: 26px;
-	height: 22px;
-	background-image: url(assets/img/icon-main-32.png);
+	width: 20px;
+	height: 20px;
+	background-image: url(assets/img/icon-main-20.png);
 	background-repeat: no-repeat;
 }
 
 .tank_icon{
-	background-position: -259px -5px;
+	background-position: -160px 0px;
 }
 
 .melee_icon{
-	background-position: -291px -5px;
+	background-position: -180px 0px;
 }
 
 .healer_icon{
-	background-position: -323px -5px;
+	background-position: -200px 0px;
 }
 
 .ranged_icon{
-	background-position: -355px -5px;
+	background-position: -220px 0px;
 }

@@ -33,6 +33,33 @@ $(document).ready(function(){
         'c': 'esper-support',
     }
 
+    var classes_icons = {
+        'warrior': {
+            "assault": "melee_icon",
+            "support": "tank_icon",
+        },
+        'stalker': {
+            "assault": "melee_icon",
+            "support": "tank_icon",
+        },
+        'engineer': {
+            "assault": "ranged_icon",
+            "support": "tank_icon",
+        },
+        'spellslinger': {
+            "assault": "ranged_icon",
+            "support": "healer_icon",
+        },
+        'esper': {
+            "assault": "ranged_icon",
+            "support": "healer_icon",
+        },
+        'medic': {
+            "assault": "ranged_icon",
+            "support": "healer_icon",
+        },
+    }
+
     var counters = {
         "tanks": {
             "anyOf": [
@@ -42,6 +69,7 @@ $(document).ready(function(){
             ],
             "total": 0,
         },
+
         "healers": {
             "anyOf": [
                 "spellslinger-support",
@@ -50,10 +78,17 @@ $(document).ready(function(){
             ],
             "total": 0,
         },
-        "dps": {
+
+        "melee_dps": {
             "anyOf": [
                 "warrior-assault",
                 "stalker-assault",
+            ],
+            "total": 0,
+        },
+
+        "ranged_dps": {
+            "anyOf": [
                 "esper-assault",
                 "medic-assault",
                 "spellslinger-assault",
@@ -192,7 +227,7 @@ $(document).ready(function(){
     function createCounters() {
         var counterHtml = '';
         for(var counter in counters) {
-            counterHtml += '<span id="' + counter + '">' + counter + ': <span class="counter"></span><br></span>\n'  
+            counterHtml += '<span id="' + counter + '">' + counter.replace(/_/g, ' ') + ': <span class="counter"></span><br></span>\n'  
         }
         $('.counters').html(counterHtml);
     }
@@ -312,21 +347,26 @@ $(document).ready(function(){
         if (block.hasClass('assault')) {
             block.removeClass('assault');
             block.addClass('support');
-            var text = block.text().replace("assault", "support");
-            block.text(text);
+            for (var className in classes_icons) {
+                if (block.hasClass(className)) {
+                    var role_icon = block.children();
+                    role_icon.removeClass(classes_icons[className]['assault'])
+                    role_icon.addClass(classes_icons[className]['support'])
+                }
+            }
         }
         else if (block.hasClass('support')) {
             block.removeClass('support');
             block.addClass('assault');
-            var text = block.text().replace("support", "assault");
-            block.text(text);
+            for (var className in classes_icons) {
+                if (block.hasClass(className)) {
+                    var role_icon = block.children();
+                    role_icon.removeClass(classes_icons[className]['support'])
+                    role_icon.addClass(classes_icons[className]['assault'])
+                }
+            }
         }
-
-
     }
-
-
-
 
 });
 
