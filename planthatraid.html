@@ -3,104 +3,235 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script src="planner.js" type="text/javascript"></script>
+    <script src="lz-string.js" type="text/javascript"></script>
     <link href="planthatraid.css" rel="stylesheet">
 
   </head>
   <body>
     <div id="container">
+
+    <div class="content_header">
+    Plan that raid <a href="#" class="linkHere">Link here</a>
+    </div>
       <div id="classes">
-        <div class="block warrior">Warrior</div>
-        <div class="block stalker">Stalker</div>
-        <div class="block medic">Medic</div>
-        <div class="block engineer">Engineer</div>
-        <div class="block spellslinger">Spellslinger</div>
-        <div class="block esper">Esper</div>
+        <div class="block warrior assault">
+          <div class="div_classname">Warrior</div><span class="role_icon melee_icon"></span>
+        </div>
+        <div class="block stalker assault">
+         <div class="div_classname"> Stalker</div><span class="role_icon melee_icon"></span>
+        </div>
+        <div class="block medic assault">
+          <div class="div_classname">Medic</div><span class="role_icon ranged_icon"></span>
+        </div>
+        <div class="block engineer assault">
+          <div class="div_classname">Engineer</div><span class="role_icon ranged_icon"></span>
+        </div>
+        <div class="block spellslinger assault">
+          <div class="div_classname">Spellslinger</div><span class="role_icon ranged_icon"></span>
+        </div>
+        <div class="block esper assault">
+          <div class="div_classname">Esper</div><span class="role_icon ranged_icon"></span>
+        </div>
+      </div>
+	  <div class="right_content">
+      <p class="counters"></p>
       </div>
 
-
-      <div id="planner" style="background-color: #e0e0e0; width: 300px">
-        <div class="group group1">
-          <ul>
-            <li class="slot"></li>
-            <li class="slot"></li>
-            <li class="slot"></li>
-            <li class="slot"></li>
-            <li class="slot"></li>
-          </ul>
+      <div id="planner">
+      <!-- COPY THIS PART TO ADD ADDITIONAL GROUPS -->
+        <div class="group" id="group1">
+       	  <div class="div_add">
+       	  	<ul>
+       	  		<li style="visibility:hidden;;"></li>
+       	  		<li>+</li>
+       	  		<li>+</li>
+       	  		<li>+</li>
+       	  		<li>+</li>
+       	  		<li>+</li>
+       	  	</ul>
+       	  </div>
+       	  <div class="div_groups">
+         	  <h1> Group 1</h1>
+         		<ul class="slot">
+            		<li></li>
+          			<li></li>
+            		<li></li>
+            		<li></li>
+            		<li></li>
+        		</ul>
+        	</div>
         </div>
 
-        <div class="group group2">
-          <ul>
-            <li class="slot"></li>
-            <li class="slot"></li>
-            <li class="slot"></li>
-            <li class="slot"></li>
-            <li class="slot"></li>
-          </ul>
+        <div class="group" id="group2">
+          <div class="div_groups">
+         	  <h1> Group 2</h1>
+        		<ul class="slot" >
+            		<li></li>
+            		<li></li>
+           	 		<li></li>
+           			<li></li>
+            		<li></li>
+        	  </ul>
+       	  </div>
+       	  <div class="div_add">
+       	  	<ul>
+       	  		<li style="visibility:hidden;;"></li>
+       	  		<li>+</li>
+       	  		<li>+</li>
+       	  		<li>+</li>
+       	  		<li>+</li>
+       	  		<li>+</li>
+       	  	</ul>
+       	  </div>
         </div>
 
-        <div class="group group3">
-          <ul>
-            <li class="slot"></li>
-            <li class="slot"></li>
-            <li class="slot"></li>
-            <li class="slot"></li>
-            <li class="slot"></li>
-          </ul>
+        <div class="group" id="group3">
+          <div class="div_add">
+            <ul>
+              <li style="visibility:hidden;;"></li>
+              <li>+</li>
+              <li>+</li>
+              <li>+</li>
+              <li>+</li>
+              <li>+</li>
+            </ul>
+          </div>
+          <div class="div_groups">
+            <h1> Group 3</h1>
+            <ul class="slot">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+          </div>
         </div>
 
-        <div class="group group4">
-          <ul>
-            <li class="slot"></li>
-            <li class="slot"></li>
-            <li class="slot"></li>
-            <li class="slot"></li>
-            <li class="slot"></li>
-          </ul>
+        <div class="group" id="group4">
+          <div class="div_groups">
+            <h1> Group 4</h1>
+            <ul class="slot" >
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+          </div>
+          <div class="div_add">
+            <ul>
+              <li style="visibility:hidden;;"></li>
+              <li>+</li>
+              <li>+</li>
+              <li>+</li>
+              <li>+</li>
+              <li>+</li>
+            </ul>
+          </div>
         </div>
 
-        <div class="group group5">
-          <ul>
-            <li class="slot"></li>
-            <li class="slot"></li>
-            <li class="slot"></li>
-            <li class="slot"></li>
-            <li class="slot"></li>
-          </ul>
+        <div class="group" id="group5">
+          <div class="div_add">
+            <ul>
+              <li style="visibility:hidden;;"></li>
+              <li>+</li>
+              <li>+</li>
+              <li>+</li>
+              <li>+</li>
+              <li>+</li>
+            </ul>
+          </div>
+          <div class="div_groups">
+            <h1> Group 5</h1>
+            <ul class="slot">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+          </div>
         </div>
 
-        <div class="group group6">
-          <ul>
-            <li class="slot"></li>
-            <li class="slot"></li>
-            <li class="slot"></li>
-            <li class="slot"></li>
-            <li class="slot"></li>
-          </ul>
+        <div class="group" id="group6">
+          <div class="div_groups">
+            <h1> Group 6</h1>
+            <ul class="slot" >
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+          </div>
+          <div class="div_add">
+            <ul>
+              <li style="visibility:hidden;;"></li>
+              <li>+</li>
+              <li>+</li>
+              <li>+</li>
+              <li>+</li>
+              <li>+</li>
+            </ul>
+          </div>
         </div>
 
-        <div class="group group7">
-          <ul>
-            <li class="slot"></li>
-            <li class="slot"></li>
-            <li class="slot"></li>
-            <li class="slot"></li>
-            <li class="slot"></li>
-          </ul>
+        <div class="group" id="group7">
+          <div class="div_add">
+            <ul>
+              <li style="visibility:hidden;;"></li>
+              <li>+</li>
+              <li>+</li>
+              <li>+</li>
+              <li>+</li>
+              <li>+</li>
+            </ul>
+          </div>
+          <div class="div_groups">
+            <h1> Group 7</h1>
+            <ul class="slot">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+          </div>
         </div>
 
-        <div class="group group8">
-          <ul>
-            <li class="slot"></li>
-            <li class="slot"></li>
-            <li class="slot"></li>
-            <li class="slot"></li>
-            <li class="slot"></li>
-          </ul>
+        <div class="group" id="group8">
+          <div class="div_groups">
+            <h1> Group 8</h1>
+            <ul class="slot" >
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+          </div>
+          <div class="div_add">
+            <ul>
+              <li style="visibility:hidden;;"></li>
+              <li>+</li>
+              <li>+</li>
+              <li>+</li>
+              <li>+</li>
+              <li>+</li>
+            </ul>
+          </div>
         </div>
 
+       	  
       <!-- end of planner -->
       </div>
+
+      <ul>
+        <li style="visibility:hidden;">#chuamasterrace</li>
+      </ul>
+
+
     <!-- end of container -->
     </div>
   </body>
