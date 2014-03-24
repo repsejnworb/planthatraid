@@ -192,6 +192,13 @@ $(document).ready(function(){
         */
     });
 
+    $('.linkHere').click(function() {
+        var URL = $(location).attr('href').split('#')[0];
+        var seri = serializeGroups();
+        URL += "#" + seri;
+        prompt("Just copy this link and pass it on (or save it!)", URL);
+    });
+
     parseURL()
     generateURL()
 
@@ -275,10 +282,8 @@ $(document).ready(function(){
     };
 
     function generateURL() {
-        var URL = $(location).attr('href').split('#')[0];
         var seri = serializeGroups();
-        URL += "#" + seri;
-        $( ".linkfield" ).val(URL);
+        addToURL("#" + seri);
         writeCounters();
         return seri;
     };
@@ -366,6 +371,10 @@ $(document).ready(function(){
                 }
             }
         }
+    }
+
+    function addToURL(addition) {
+        window.history.pushState("object or string", "Title", addition);
     }
 
 });
