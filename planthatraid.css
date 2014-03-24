@@ -74,10 +74,10 @@ h1{
     width: 120px;
     height: 20px;
     text-align: center;
-    font-variant:small-caps;
     color: white;
-    font-family: Verdana, Geneva, sans-serif;
-    font-size: 10px;
+    font-family:"Trebuchet MS", Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
 
     /* Disable Text Selection */
     -webkit-touch-callout: none;
@@ -95,27 +95,39 @@ h1{
 }
 
 .block.warrior {
-	background-color: #B00000;
+    /* background-color: #B00000; */
+    background-color: salmon;
+    background-image: linear-gradient(90deg,rgb(155,14,14) 60% ,rgb(205,64,64) 85%);
 }
 
 .block.stalker {
-	background-color: #902e85;
+    /* background-color: #902e85; */
+    /*background-color: mediumorchid; */
+    background-image: linear-gradient(90deg,rgb(104,0,185) 60% ,rgb(174,70,255) 85%);
 }
 
 .block.medic {
-	background-color: #c0c126;
+    /* background-color: #c0c126; */
+    background-color: gold;
+    background-image: linear-gradient(90deg,rgb(155,113,0) 60% ,rgb(205,163,1) 85%);
 }
 
 .block.engineer {
-	background-color: #26c14b;
+    /* background-color: #26c14b; */
+    background-color: goldenrod;
+    background-image: linear-gradient(90deg,rgb(121,62,4) 60% ,rgb(171,112,14) 85%);
 }
 
 .block.spellslinger {
-	background-color: #2692c0;
+    /* background-color: #2692c0; */
+    background-color: palegreen;
+    background-image: linear-gradient(90deg,rgb(88,155,60) 60% ,rgb(138,205,110) 85%);
 }
 
 .block.esper {
-	background-color: #37827d;
+    /* background-color: #37827d; */
+    background-color: lightseagreen;
+    background-image: linear-gradient(90deg,rgb(0,109,135) 60% ,rgb(39,148,174) 85%);
 }
 
 .slot li {
@@ -206,26 +218,29 @@ h1{
 .role_icon{
 	float: right;
 	display: block;
-	width: 20px;
-	height: 20px;
-	background-image: url(assets/img/icon-main-20.png);
+    width: 27px;
+    height: 27px;
+	background-image: url(assets/img/icon-main-27.png);
 	background-repeat: no-repeat;
+    position: absolute;
+    margin-top: -4px;
+    margin-left: 85px;
 }
 
 .tank_icon{
-	background-position: -160px 0px;
+    background-position: -216px 0px;
 }
 
 .melee_icon{
-	background-position: -180px 0px;
+    background-position: -243px 0px;
 }
 
 .healer_icon{
-	background-position: -200px 0px;
+    background-position: -270px 0px;
 }
 
 .ranged_icon{
-	background-position: -220px 0px;
+    background-position: -297px 1px;
 }
 
 .div_classname {
