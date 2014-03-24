@@ -149,14 +149,12 @@ $(document).ready(function(){
             });
             $(this).append(clone);
             var cla = getClass(clone);
-            console.log("got class: " + cla);
 
             // When moving blocks in groups we want to clean up after us.
             if(!$(ui.draggable).parent().is('#classes')) {
                 $(ui.draggable).remove();
             }
-            var seri = generateURL();
-            console.log("got seri: " + seri);
+            seri = generateURL();
         },
     });
 
@@ -165,31 +163,17 @@ $(document).ready(function(){
         // Minus 1 because we have 6 elements in the div_add
         var index = $(this).index() - 1;
         var slot = group.find('.slot li').eq(index);
-        console.log("number of children: " + slot.children().length)
         var block = slot.children();
-        console.log("Slot: " + slot.attr('id'));
-        console.log(block.length);
         if (block.length == 0) {
             console.log("Tried to switch role for empty slot");
         }
         else if (block.length == 1) {
-            // var className = getClass(block); 
-            console.log("Swapping role");
             swapRole(block);
         }
         else {
             console.log("Unknown error. Length was " + block.length);
         }
-        var seri = generateURL();
-        console.log("got new seri: " + seri);
-
-        /*
-        console.log("Me: " + $(this).attr('id'));
-        console.log("Index: " + index);
-        console.log("Parent: " + $(this).parent().attr('id'));
-        console.log("In group: " + group.attr('id'));
-        console.log("Slot: " + slot.attr('id'));
-        */
+        generateURL();
     });
 
     $('.linkHere').click(function() {
@@ -216,21 +200,6 @@ $(document).ready(function(){
         return className;
     };
 
-    /*
-    console.log(Base62.encode(13455));
-    //var string = '4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG'
-    var string = '4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG4aBfKjHiG6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa6kKlIjHGa1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw1MmNfJaOw2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK2qIqQoPlK'
-    var compressed = LZString.compressToBase64(string);
-    console.log(compressed);
-    console.log(string.length);
-    console.log(compressed.length);
-    var korv = Base62.encode(string);
-    console.log("B62: " + korv.length);
-    var decompressed = LZString.decompressFromBase64(compressed);
-    console.log(decompressed);
-    console.log(decompressed.length);
-    */
-
     function createCounters() {
         var counterHtml = '';
         for(var counter in counters) {
@@ -241,8 +210,6 @@ $(document).ready(function(){
 
     function writeCounters() {
         for(var counter in counters) {
-            console.log(counter);
-            console.log(counters[counter]['total']);
             $('.counters #' + counter + ' .counter').text(counters[counter]['total']);
         }
     }
@@ -267,17 +234,11 @@ $(document).ready(function(){
         $( ".div_groups li" ).each(function( index ) {
             var block = $( this ).children(".block");
             var className = getClass(block);
-            //console.log(index + ": " + className);
             if ( className !== "undefined") {
                 updateCountersFor(className);
             }
-            //console.log("fisk " + classes[className]);
             result = result + classes[className].toString();  
         });
-        console.log("result: " + result);
-        //console.log("result62: " + Base62.encode(result));
-        //console.log("result62decoded: " + Base62.decode(Base62.encode(result)));
-        //return Base62.encode(result);
         return result
     };
 
@@ -293,10 +254,6 @@ $(document).ready(function(){
         var hash = $(location).attr('hash');
         if (hash.length > 0) {
             hash = hash.replace('#','').split('');
-            console.log("full url: " + document.URL);
-            console.log("param: " + param);
-            console.log("hash: " + hash);
-            console.log("indexing hash: " + hash[39]);
             restoreFromHash(hash);         
         }
     }
@@ -316,9 +273,6 @@ $(document).ready(function(){
                         return false;
                     }
                 });
-
-                //clone.draggable({ disabled: true });
-                //clone.draggable('enable');
                 clone.draggable({
                     revert: function(valid) {
                         if(!valid) {
@@ -333,15 +287,12 @@ $(document).ready(function(){
                     left: 0,
                     zIndex: 75
                 });
-
-                console.log(clone.attr("class")); 
                 // ensure we restore the correct role, as the templates start off as assault
                 if (!clone.hasClass(role)) {
                     swapRole(clone);
                 }
 
-                $(this).append(clone);
-                console.log(clone.attr("class"));           
+                $(this).append(clone);         
             }
 
         });
@@ -378,31 +329,3 @@ $(document).ready(function(){
     }
 
 });
-
-
-
-var Base62 = {
-  chars: "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""),
-
-  encode: function(i){
-    if (i === 0) {return '0'}
-    var s = ''
-    while (i > 0) {
-      s = this.chars[i % 62] + s
-      i = Math.floor(i/62)
-    }
-    return s
-  },
-
-  decode: function(a,b,c,d){
-    for (
-      b = c = (
-        a === (/\W|_|^$/.test(a += "") || a)
-      ) - 1;
-      d = a.charCodeAt(c++);
-    )
-    b = b * 62 + d - [, 48, 29, 87][d >> 5];
-    return b
-  },
-
-};
